@@ -1,12 +1,20 @@
 class BirdsController < ApplicationController
 
+
+  # Post /birds
+  def create
+    bird = Bird.create(name: params[:name], species: params[:species])
+  render json: bird, status: :created
+  end
+
+
   # GET /birds
   def index
     birds = Bird.all
     render json: birds
   end
 
-  # GET /birds/:id
+  # GET /birds/:id specific bird
   def show
     bird = Bird.find_by(id: params[:id])
     if bird
